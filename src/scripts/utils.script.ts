@@ -20,6 +20,8 @@ export const INTEREST_LABS_NODE =
 
 export const POW_9 = 10n ** 9n;
 
+export const MAX_BPS = 10_000n;
+
 export const suiClient = new SuiClient({
   url: getFullnodeUrl('mainnet'),
 });

@@ -14,14 +14,14 @@ import {
 
   const walCoin = await coinWithBalance({
     type: TYPES.WAL,
-    balance: POW_9 * 20n,
+    balance: POW_9 * 3n,
   })(tx);
 
   const { returnValues: lst } = await blizzardSDK.mint({
     tx,
     nodeId: INTEREST_LABS_NODE,
     walCoin,
-    blizzardStaking: SHARED_OBJECTS.WWAL_STAKING({
+    blizzardStaking: SHARED_OBJECTS.PWAL_STAKING({
       mutable: true,
     }).objectId,
   });

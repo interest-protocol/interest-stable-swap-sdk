@@ -2,15 +2,25 @@ import { coinWithBalance } from '@mysten/sui/transactions';
 import { Transaction } from '@mysten/sui/transactions';
 
 import { SHARED_OBJECTS, TYPES } from '../../blizzard/constants';
-import { blizzardSDK, executeTx, keypair, POW_9 } from '../utils.script';
+import {
+  blizzardSDK,
+  executeTx,
+  keypair,
+  MAX_BPS,
+  POW_9,
+} from '../utils.script';
 
 (async () => {
   const txb = new Transaction();
 
   const amount = POW_9 * 2n;
 
+  const fee = (amount * 1n) / MAX_BPS;
+
+  const amountMinusFee = amount - fee;
+
   const wal = coinWithBalance({
-    type: TYPES.WWAL,
+    type: TYPES.PWAL,
     balance: amount,
   })(txb);
 
@@ -19,8 +29,8 @@ import { blizzardSDK, executeTx, keypair, POW_9 } from '../utils.script';
     tx,
   } = await blizzardSDK.fcfs({
     tx: txb,
-    value: amount,
-    blizzardStaking: SHARED_OBJECTS.WWAL_STAKING({
+    value: amountMinusFee,
+    blizzardStaking: SHARED_OBJECTS.PWAL_STAKING({
       mutable: true,
     }).objectId,
   });
@@ -31,7 +41,7 @@ import { blizzardSDK, executeTx, keypair, POW_9 } from '../utils.script';
     tx,
     lstCoin: wal,
     withdrawIXs,
-    blizzardStaking: SHARED_OBJECTS.WWAL_STAKING({
+    blizzardStaking: SHARED_OBJECTS.PWAL_STAKING({
       mutable: true,
     }).objectId,
   });
