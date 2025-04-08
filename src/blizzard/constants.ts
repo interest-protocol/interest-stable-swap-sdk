@@ -323,6 +323,10 @@ export const INNER_LST_STATE_ID = {
     normalizeSuiObjectId(
       '0x92e5a5312dbd299c7284788e60eca29e5241406ce6b35a2588d94d903a401a40'
     ),
+  [SHARED_OBJECTS.TR_WAL_STAKING({ mutable: false }).objectId]:
+    normalizeSuiObjectId(
+      '0xba9ef1033d861252f6254752a2ba6e495ca08702dd2bc524a6ef1a76f8ac5a54'
+    ),
 };
 
 export const INNER_LST_TREASURY_CAP = {
@@ -352,7 +356,7 @@ export const INNER_LST_TREASURY_CAP = {
     ),
   [SHARED_OBJECTS.TR_WAL_STAKING({ mutable: false }).objectId]:
     normalizeSuiObjectId(
-      '0xba9ef1033d861252f6254752a2ba6e495ca08702dd2bc524a6ef1a76f8ac5a54'
+      '0x390082df42428e33c5c4a3a9ec9a33567f8748e2cb5a6c4953c7a884f032e2b5'
     ),
 };
 

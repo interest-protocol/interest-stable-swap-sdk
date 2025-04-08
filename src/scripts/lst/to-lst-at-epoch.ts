@@ -7,7 +7,7 @@ import { blizzardSDK } from '../utils.script';
       mutable: true,
     }).objectId,
     epoch: 1,
-    value: 1_000_000_000n,
+    value: 1_000_000_000n * 1000n,
   });
 
   console.log(lst);
