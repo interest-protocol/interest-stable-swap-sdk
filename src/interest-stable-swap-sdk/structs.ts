@@ -11,15 +11,3 @@ export const ID = bcs.fixedArray(32, bcs.u8()).transform({
   input: (id: string) => fromHex(id),
   output: (id) => toHex(Uint8Array.from(id)),
 });
-
-export const EpochValue = bcs.struct('EpochValue', {
-  epoch: bcs.u32(),
-  value: bcs.u64(),
-});
-
-export const IX = bcs.struct('IX', {
-  node_id: ID,
-  epoch_values: bcs.vector(EpochValue),
-});
-
-export const OptionU64 = bcs.option(bcs.u64());

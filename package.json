@@ -1,22 +1,22 @@
 {
-  "name": "@interest-protocol/blizzard-sdk",
+  "name": "@interest-protocol/interest-stable-swap-sdk",
   "author": "jose cerqueira",
   "files": [
     "dist"
   ],
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
-  "types": "./dist/blizzard/index.d.ts",
+  "types": "./dist/interest-stable-swap-sdk/index.d.ts",
   "exports": {
     ".": {
-      "source": "./src/blizzard/index.ts",
+      "source": "./src/interest-stable-swap-sdk/index.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.js",
-      "types": "./dist/blizzard/index.d.ts"
+      "types": "./dist/interest-stable-swap-sdk/index.d.ts"
     }
   },
   "version": "1.8.0",
-  "description": "blizzard sdk",
+  "description": "interest stable swap sdk",
   "publishConfig": {
     "access": "public"
   },
@@ -28,33 +28,7 @@
     "build": "pnpm run clean && pnpm run build:tsup && pnpm run build:types",
     "prepublishOnly": "pnpm run clean && pnpm run build",
     "new-admin": "tsx src/scripts/acl/new-admin.ts",
-    "is-admin": "tsx src/scripts/acl/is-admin.ts",
-    "new-lst": "tsx src/scripts/admin/new-lst.ts",
-    "add-node": "tsx src/scripts/admin/add-node.ts",
-    "remove-node": "tsx src/scripts/admin/remove-node.ts",
-    "mint-after-votes": "tsx src/scripts/lst/mint-after-votes.ts",
-    "sync-exchange-rate": "tsx src/scripts/lst/sync-exchange-rate.ts",
-    "type-from-blizzard-staking": "tsx src/scripts/lst/type-from-blizzard-staking.ts",
-    "type-from-blizzard-acl": "tsx src/scripts/acl/type-from-blizzard-acl.ts",
-    "get-epoch-data": "tsx src/scripts/lst/get-epoch-data.ts",
-    "mint": "tsx src/scripts/lst/mint.ts",
-    "burn": "tsx src/scripts/lst/burn.ts",
-    "last-epoch-apr": "tsx src/scripts/lst/last-epoch-apr.ts",
-    "to-wal-at-epoch": "tsx src/scripts/lst/to-wal-at-epoch.ts",
-    "to-lst-at-epoch": "tsx src/scripts/lst/to-lst-at-epoch.ts",
-    "get-fees": "tsx src/scripts/lst/get-fees.ts",
-    "allowed-nodes": "tsx src/scripts/lst/allowed-nodes.ts",
-    "get-latest-walrus-package": "tsx src/scripts/lst/get-latest-walrus-package.ts",
-    "update-nft-display": "tsx src/scripts/admin/update-nft-display.ts",
-    "view-fcfs": "tsx src/scripts/lst/view-fcfs.ts",
-    "get-staked-nft-data": "tsx src/scripts/lst/get-staked-nft-data.ts",
-    "query-lsts": "tsx src/scripts/lst/query-lsts.ts",
-    "update-description": "tsx src/scripts/admin/update-description.ts",
-    "metadata": "tsx src/scripts/metadata.ts",
-    "transfer": "tsx src/scripts/transfer.ts",
-    "get-blizzard-staking": "tsx src/scripts/lst/get-blizzard-staking.ts",
-    "claim-fees": "tsx src/scripts/lst/claim-fees.ts",
-    "query-exchange-rates": "tsx src/scripts/lst/query-exchange-rates.ts"
+    "is-admin": "tsx src/scripts/acl/is-admin.ts"
   },
   "keywords": [],
   "license": "ISC",

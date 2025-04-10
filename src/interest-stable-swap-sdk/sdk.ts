@@ -4,21 +4,20 @@ import { isValidSuiObjectId, normalizeSuiAddress } from '@mysten/sui/utils';
 import { has } from 'ramda';
 import invariant from 'tiny-invariant';
 
+import { Modules } from './constants';
 import {
   OwnedObject,
   Package,
   SdkConstructorArgs,
   SharedObject,
   SharedObjects,
-} from './blizzard.types';
-import { Modules, TYPES } from './constants';
+} from './stable-swap.types';
 import { getSdkDefaultArgs } from './utils';
 
 export class SDK {
   packages: Package;
   sharedObjects: SharedObjects;
   modules = Modules;
-  types: typeof TYPES;
 
   #rpcUrl: string;
 
@@ -45,12 +44,10 @@ export class SDK {
       'You must provide sharedObjects for this specific network'
     );
 
-    invariant(data.types, 'You must provide types for this specific network');
-
     this.#rpcUrl = data.fullNodeUrl;
     this.packages = data.packages;
     this.sharedObjects = data.sharedObjects;
-    this.types = data.types;
+
     this.client = new SuiClient({ url: data.fullNodeUrl });
   }
 
@@ -62,13 +59,13 @@ export class SDK {
 
   public getAllowedVersions(tx: Transaction) {
     return tx.moveCall({
-      package: this.packages.BLIZZARD.latest,
-      module: this.modules.AllowedVersions,
+      package: this.packages.STABLE_SWAP_DEX.latest,
+      module: this.modules.Version,
       function: 'get_allowed_versions',
       arguments: [
         this.sharedObject(
           tx,
-          this.sharedObjects.BLIZZARD_AV({ mutable: false })
+          this.sharedObjects.ALLOWED_VERSIONS({ mutable: false })
         ),
       ],
     });

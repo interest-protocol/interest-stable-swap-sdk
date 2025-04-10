@@ -4,6 +4,7 @@ import { normalizeStructTag } from '@mysten/sui/utils';
 import { devInspectAndGetReturnValues } from '@polymedia/suitcase-core';
 import invariant from 'tiny-invariant';
 
+import { SDK } from './sdk';
 import {
   BlizzardAclArgs,
   DestroyAdminArgs,
@@ -16,8 +17,7 @@ import {
   SharedObject,
   SignInArgs,
   StartSuperAdminTransferArgs,
-} from './blizzard.types';
-import { SDK } from './sdk';
+} from './stable-swap.types';
 
 export class BlizzardAclSDK extends SDK {
   acl: SharedObject;
@@ -46,8 +46,8 @@ export class BlizzardAclSDK extends SDK {
 
     return {
       returnValues: tx.moveCall({
-        package: this.packages.BLIZZARD.latest,
-        module: this.modules.ACL,
+        package: this.packages.STABLE_SWAP_DEX.latest,
+        module: this.modules.Acl,
         function: 'new_admin',
         typeArguments: [lstType],
         arguments: [
@@ -71,8 +71,8 @@ export class BlizzardAclSDK extends SDK {
     lstType = await this.maybeFetchAndSaveLstType(lstType);
 
     tx.moveCall({
-      package: this.packages.BLIZZARD.latest,
-      module: this.modules.ACL,
+      package: this.packages.STABLE_SWAP_DEX.latest,
+      module: this.modules.Acl,
       function: 'new_and_transfer',
       typeArguments: [lstType],
       arguments: [
@@ -99,8 +99,8 @@ export class BlizzardAclSDK extends SDK {
 
     return {
       returnValues: tx.moveCall({
-        package: this.packages.BLIZZARD.latest,
-        module: this.modules.ACL,
+        package: this.packages.STABLE_SWAP_DEX.latest,
+        module: this.modules.Acl,
         function: 'sign_in',
         typeArguments: [lstType],
         arguments: [
@@ -124,8 +124,8 @@ export class BlizzardAclSDK extends SDK {
     lstType = await this.maybeFetchAndSaveLstType(lstType);
 
     tx.moveCall({
-      package: this.packages.BLIZZARD.latest,
-      module: this.modules.ACL,
+      package: this.packages.STABLE_SWAP_DEX.latest,
+      module: this.modules.Acl,
       function: 'revoke',
       typeArguments: [lstType],
       arguments: [
@@ -147,8 +147,8 @@ export class BlizzardAclSDK extends SDK {
     lstType = await this.maybeFetchAndSaveLstType(lstType);
 
     tx.moveCall({
-      package: this.packages.BLIZZARD.latest,
-      module: this.modules.ACL,
+      package: this.packages.STABLE_SWAP_DEX.latest,
+      module: this.modules.Acl,
       function: 'is_admin',
       typeArguments: [lstType],
       arguments: [this.sharedObject(tx, this.acl), tx.pure.address(admin)],
@@ -171,8 +171,8 @@ export class BlizzardAclSDK extends SDK {
     lstType = await this.maybeFetchAndSaveLstType(lstType);
 
     tx.moveCall({
-      package: this.packages.BLIZZARD.latest,
-      module: this.modules.ACL,
+      package: this.packages.STABLE_SWAP_DEX.latest,
+      module: this.modules.Acl,
       function: 'destroy_admin',
       typeArguments: [lstType],
       arguments: [this.sharedObject(tx, this.acl), this.ownedObject(tx, admin)],
@@ -196,8 +196,8 @@ export class BlizzardAclSDK extends SDK {
     lstType = await this.maybeFetchAndSaveLstType(lstType);
 
     tx.moveCall({
-      package: this.packages.BLIZZARD.latest,
-      module: this.modules.ACL,
+      package: this.packages.STABLE_SWAP_DEX.latest,
+      module: this.modules.Acl,
       function: 'start_transfer',
       typeArguments: [lstType],
       arguments: [this.ownedObject(tx, superAdmin), tx.pure.address(recipient)],
@@ -219,8 +219,8 @@ export class BlizzardAclSDK extends SDK {
     lstType = await this.maybeFetchAndSaveLstType(lstType);
 
     tx.moveCall({
-      package: this.packages.BLIZZARD.latest,
-      module: this.modules.ACL,
+      package: this.packages.STABLE_SWAP_DEX.latest,
+      module: this.modules.Acl,
       function: 'finish_transfer',
       typeArguments: [lstType],
       arguments: [this.ownedObject(tx, superAdmin)],
@@ -242,8 +242,8 @@ export class BlizzardAclSDK extends SDK {
     lstType = await this.maybeFetchAndSaveLstType(lstType);
 
     tx.moveCall({
-      package: this.packages.BLIZZARD.latest,
-      module: this.modules.ACL,
+      package: this.packages.STABLE_SWAP_DEX.latest,
+      module: this.modules.Acl,
       function: 'destroy',
       typeArguments: [lstType],
       arguments: [this.ownedObject(tx, superAdmin)],
