@@ -23,7 +23,7 @@
   "scripts": {
     "lint": "npx eslint . --fix",
     "clean": "rimraf dist && rimraf tsconfig.prod.tsbuildinfo && rimraf tsconfig.tsbuildinfo",
-    "build:tsup": "tsup './src/blizzard/index.ts' --format esm,cjs --sourcemap",
+    "build:tsup": "tsup './src/interest-stable-swap-sdk/index.ts' --format esm,cjs --sourcemap",
     "build:types": "tsc --project tsconfig.prod.json",
     "build": "pnpm run clean && pnpm run build:tsup && pnpm run build:types",
     "prepublishOnly": "pnpm run clean && pnpm run build",

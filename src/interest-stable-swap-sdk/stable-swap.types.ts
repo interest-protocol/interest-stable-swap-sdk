@@ -57,62 +57,48 @@ export interface SdkConstructorArgs {
   sharedObjects?: SharedObjects;
 }
 
-// === POOL LST START ===
+// === POOL START ===
 
-// === POOL LST END ===
+// === POOL END ===
 
 // === ACL Types Start ===
 
-export type BlizzardAclArgs = (SdkConstructorArgs | null | undefined) & {
+export type InterestStableSwapAclArgs = (
+  | SdkConstructorArgs
+  | null
+  | undefined
+) & {
   acl: SharedObject;
 };
 
 export interface NewAdminArgs extends MaybeTx {
   superAdmin: OwnedObject;
-  lstType?: string;
-}
-
-export interface NewAdminAndTransferArgs extends MaybeTx {
-  superAdmin: OwnedObject;
-  recipient: string;
-  lstType?: string;
 }
 
 export interface RevokeAdminArgs extends MaybeTx {
   superAdmin: OwnedObject;
   admin: string;
-  lstType?: string;
 }
 
 export interface SignInArgs extends MaybeTx {
   admin: OwnedObject;
-  lstType?: string;
 }
 
 export interface DestroyAdminArgs extends MaybeTx {
   admin: OwnedObject;
-  lstType?: string;
 }
 
 export interface DestroySuperAdminArgs extends MaybeTx {
   superAdmin: OwnedObject;
-  lstType?: string;
 }
 
 export interface StartSuperAdminTransferArgs extends MaybeTx {
   superAdmin: OwnedObject;
   recipient: string;
-  lstType?: string;
 }
 
 export interface FinishSuperAdminTransferArgs extends MaybeTx {
   superAdmin: OwnedObject;
-  lstType?: string;
-}
-
-export interface IsAdminArgs {
-  admin: string;
-  lstType?: string;
 }
 
 // === ACL Types End ===
