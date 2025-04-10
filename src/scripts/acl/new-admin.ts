@@ -1,16 +1,14 @@
-import invariant from 'tiny-invariant';
+import { OWNED_OBJECTS } from '../../interest-stable-swap-sdk';
+import { acl, executeTx, keypair } from '../utils.script';
 
-import { OWNED_OBJECTS } from '../../blizzard';
-import { executeTx, wwalAcl } from '../utils.script';
-
-const recipient = '';
+const recipient = keypair.toSuiAddress();
 
 (async () => {
-  invariant(recipient, 'recipient is required');
-  const { tx } = await wwalAcl.newAdminAndTransfer({
-    recipient,
-    superAdmin: OWNED_OBJECTS.WWAL_SUPER_ADMIN,
+  const { tx, returnValues } = await acl.newAdmin({
+    superAdmin: OWNED_OBJECTS.SUPER_ADMIN,
   });
+
+  tx.transferObjects([returnValues], recipient);
 
   await executeTx(tx);
 })();

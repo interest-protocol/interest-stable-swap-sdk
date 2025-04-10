@@ -5,7 +5,11 @@ import dotenv from 'dotenv';
 import invariant from 'tiny-invariant';
 import util from 'util';
 
-import { BlizzardAclSDK, BlizzardSDK, SHARED_OBJECTS } from '../blizzard';
+import {
+  InterestStableSwapAclSDK,
+  InterestStableSwapSDK,
+  SHARED_OBJECTS,
+} from '../interest-stable-swap-sdk';
 
 dotenv.config();
 
@@ -15,26 +19,17 @@ export const keypair = Ed25519Keypair.fromSecretKey(
   Uint8Array.from(Buffer.from(process.env.KEY, 'base64')).slice(1)
 );
 
-export const INTEREST_LABS_NODE =
-  '0xe2b5df873dbcddfea64dcd16f0b581e3b9893becf991649dacc9541895c898cb';
-
 export const POW_9 = 10n ** 9n;
-
-export const MAX_BPS = 10_000n;
 
 export const suiClient = new SuiClient({
   url: getFullnodeUrl('mainnet'),
 });
 
-export const blizzardAcl = new BlizzardAclSDK({
-  acl: SHARED_OBJECTS.BLIZZARD_ACL({ mutable: true }),
+export const acl = new InterestStableSwapAclSDK({
+  acl: SHARED_OBJECTS.ACL({ mutable: true }),
 });
 
-export const wwalAcl = new BlizzardAclSDK({
-  acl: SHARED_OBJECTS.WWAL_ACL({ mutable: true }),
-});
-
-export const blizzardSDK = new BlizzardSDK();
+export const stableSwapSDK = new InterestStableSwapSDK();
 
 export const log = (x: unknown) =>
   console.log(util.inspect(x, false, null, true));

@@ -15,7 +15,7 @@
       "types": "./dist/interest-stable-swap-sdk/index.d.ts"
     }
   },
-  "version": "1.8.0",
+  "version": "1.0.0",
   "description": "interest stable swap sdk",
   "publishConfig": {
     "access": "public"
@@ -28,7 +28,7 @@
     "build": "pnpm run clean && pnpm run build:tsup && pnpm run build:types",
     "prepublishOnly": "pnpm run clean && pnpm run build",
     "new-admin": "tsx src/scripts/acl/new-admin.ts",
-    "is-admin": "tsx src/scripts/acl/is-admin.ts"
+    "new-pool": "tsx src/scripts/dex/new-pool.ts"
   },
   "keywords": [],
   "license": "ISC",

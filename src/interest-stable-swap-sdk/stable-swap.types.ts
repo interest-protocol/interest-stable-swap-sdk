@@ -4,24 +4,22 @@ import {
   TransactionObjectArgument,
   TransactionResult,
 } from '@mysten/sui/transactions';
-
+import { NestedResult } from '@polymedia/suitcase-core';
 interface SharedObjectRef {
   objectId: string;
   mutable: boolean;
   initialSharedVersion: number | string;
 }
 
-export type OwnedObject = TransactionObjectArgument | string | ObjectRef;
+export type OwnedObject =
+  | TransactionObjectArgument
+  | string
+  | ObjectRef
+  | NestedResult;
 
 export type SharedObject = string | SharedObjectRef;
 
 export type U64 = string | bigint | number;
-
-export interface GetMsUntilNextEpochArgs {
-  currentEpoch: number;
-  epochDurationMs: number;
-  firstEpochStartTimestamp: number;
-}
 
 export interface MaybeTx {
   tx?: Transaction;
@@ -43,7 +41,7 @@ export type SharedObjects = Record<
 >;
 
 export type OwnedObjects = Record<
-  'PUBLISHER' | 'SUPER_ADMIN' | 'UPGRADE_CAP',
+  'PUBLISHER' | 'SUPER_ADMIN' | 'UPGRADE_CAP' | 'ADMIN',
   string
 >;
 
@@ -58,6 +56,14 @@ export interface SdkConstructorArgs {
 }
 
 // === POOL START ===
+
+export interface NewPoolArgs extends MaybeTx {
+  lpTreasuryCap: OwnedObject;
+  coins: OwnedObject[];
+  initialA?: number;
+  coinTypes: string[];
+  adminWitness: OwnedObject;
+}
 
 // === POOL END ===
 
