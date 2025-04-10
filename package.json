@@ -28,7 +28,16 @@
     "build": "pnpm run clean && pnpm run build:tsup && pnpm run build:types",
     "prepublishOnly": "pnpm run clean && pnpm run build",
     "new-admin": "tsx src/scripts/acl/new-admin.ts",
-    "new-pool": "tsx src/scripts/dex/new-pool.ts"
+    "new-pool": "tsx src/scripts/dex/new-pool.ts",
+    "get-pool": "tsx src/scripts/dex/get-pool.ts",
+    "swap": "tsx src/scripts/dex/swap.ts",
+    "add-liquidity": "tsx src/scripts/dex/add-liquidity.ts",
+    "remove-liquidity": "tsx src/scripts/dex/remove-liquidity.ts",
+    "remove-liquidity-one-coin": "tsx src/scripts/dex/remove-liquidity-one-coin.ts",
+    "quote-swap": "tsx src/scripts/dex/quote-swap.ts",
+    "quote-add-liquidity": "tsx src/scripts/dex/quote-add-liquidity.ts",
+    "quote-remove-liquidity": "tsx src/scripts/dex/quote-remove-liquidity.ts",
+    "quote-remove-liquidity-one-coin": "tsx src/scripts/dex/quote-remove-liquidity-one-coin.ts"
   },
   "keywords": [],
   "license": "ISC",
