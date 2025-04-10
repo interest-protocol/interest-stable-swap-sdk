@@ -312,7 +312,7 @@ export class InterestStableSwapSDK extends SDK {
 
     invariant(
       typeof result[0][0] === 'string',
-      'Invalid result: no rewards found'
+      'Invalid result: no quote found'
     );
 
     return {
@@ -353,7 +353,7 @@ export class InterestStableSwapSDK extends SDK {
 
     invariant(
       typeof result[0][0] === 'string',
-      'Invalid result: no rewards found'
+      'Invalid result: no quote found'
     );
 
     return BigInt(result[0][0]);
@@ -382,7 +382,7 @@ export class InterestStableSwapSDK extends SDK {
 
     invariant(
       typeof result[0][0][0] === 'string',
-      'Invalid result: no rewards found'
+      'Invalid result: no quote found'
     );
 
     return result[0][0].map((x: string) => BigInt(x));
@@ -416,7 +416,7 @@ export class InterestStableSwapSDK extends SDK {
 
     invariant(
       typeof result[0][0] === 'string',
-      'Invalid result: no rewards found'
+      'Invalid result: no quote found'
     );
 
     return {
