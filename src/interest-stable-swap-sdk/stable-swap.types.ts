@@ -192,6 +192,20 @@ export interface FinishSuperAdminTransferArgs extends MaybeTx {
 
 // === ACL Types End ===
 
+// === Fees ===
+
+export interface CommitFeesArgs extends MaybeTx {
+  adminWitness: TransactionResult;
+  pool: InterestStablePool | string;
+  fee: U64;
+  adminFee: U64;
+}
+
+export interface UpdateFeesArgs extends MaybeTx {
+  adminWitness: TransactionResult;
+  pool: InterestStablePool | string;
+}
+
 // === Update Metadata ===
 
 export interface UpdateMetadataArgs extends MaybeTx {

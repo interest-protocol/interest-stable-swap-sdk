@@ -13,6 +13,7 @@ import {
 import { SDK } from './sdk';
 import {
   AddLiquidityArgs,
+  CommitFeesArgs,
   InterestStablePool,
   NewPoolArgs,
   QuoteAddLiquidityArgs,
@@ -23,6 +24,7 @@ import {
   RemoveLiquidityOneCoinArgs,
   SdkConstructorArgs,
   SwapArgs,
+  UpdateFeesArgs,
 } from './stable-swap.types';
 import { parsePoolObject, parseStateObject } from './utils';
 
@@ -422,6 +424,68 @@ export class InterestStableSwapSDK extends SDK {
     return {
       amountOut: BigInt(result[0][0]),
       fee: BigInt(result[0][1]),
+    };
+  }
+
+  public async commitFees({
+    pool,
+    fee,
+    adminFee,
+    adminWitness,
+    tx = new Transaction(),
+  }: CommitFeesArgs) {
+    if (typeof pool === 'string') {
+      pool = await this.getPool(pool);
+    }
+
+    invariant(BigInt(fee) > 0n, 'Fee must be greater than 0');
+
+    invariant(BigInt(adminFee) > 0n, 'Admin fee must be greater than 0');
+
+    const version = this.getAllowedVersions(tx);
+
+    tx.moveCall({
+      package: this.packages.STABLE_SWAP_DEX.latest,
+      module: Modules.Pool,
+      function: 'commit_fee',
+      arguments: [
+        tx.object(pool.objectId),
+        adminWitness,
+        tx.pure.option('u256', fee),
+        tx.pure.option('u256', adminFee),
+        version,
+      ],
+      typeArguments: [pool.lpCoinType],
+    });
+
+    return {
+      returnValues: null,
+      tx,
+    };
+  }
+
+  public async updateFees({
+    pool,
+    adminWitness,
+    tx = new Transaction(),
+  }: UpdateFeesArgs) {
+    if (typeof pool === 'string') {
+      pool = await this.getPool(pool);
+    }
+
+    const version = this.getAllowedVersions(tx);
+
+    tx.moveCall({
+      package: this.packages.STABLE_SWAP_DEX.latest,
+      module: Modules.Pool,
+      function: 'update_fee',
+      arguments: [tx.object(pool.objectId), adminWitness, version],
+      typeArguments: [pool.lpCoinType],
+    });
+
+    return {
+      returnValues: null,
+      tx,
     };
   }
 }

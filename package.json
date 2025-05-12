@@ -15,7 +15,7 @@
       "types": "./dist/interest-stable-swap-sdk/index.d.ts"
     }
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "interest stable swap sdk",
   "publishConfig": {
     "access": "public"
@@ -37,7 +37,9 @@
     "quote-swap": "tsx src/scripts/dex/quote-swap.ts",
     "quote-add-liquidity": "tsx src/scripts/dex/quote-add-liquidity.ts",
     "quote-remove-liquidity": "tsx src/scripts/dex/quote-remove-liquidity.ts",
-    "quote-remove-liquidity-one-coin": "tsx src/scripts/dex/quote-remove-liquidity-one-coin.ts"
+    "quote-remove-liquidity-one-coin": "tsx src/scripts/dex/quote-remove-liquidity-one-coin.ts",
+    "commit-fee": "tsx src/scripts/dex/commit-fee.ts",
+    "update-fee": "tsx src/scripts/dex/update-fee.ts"
   },
   "keywords": [],
   "license": "ISC",
